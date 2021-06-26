@@ -36,7 +36,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                     Arrays.asList(
                             "/api/account",
                             "/authenticate",
-                            "/docs/index.html"
+                            "/docs/index.html",
+                            "/h2-console/*"
                     ));
 
     /*
