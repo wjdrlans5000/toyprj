@@ -13,6 +13,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+//AuthenticationProvider 인터페이스는 화면에서 입력한 로그인 정보와 DB에서 가져온 사용자의 정보를 비교해주는 인터페이스이다.
+//토큰으로 인증하는것은 아님
+//토큰 인증 확인은 JwtRequestFilter에서 요청시마다 filter에서 토큰확인
+//현재 프로젝트에서 사용하지 않는 클래스..
 @Component
 public class JwtAuthenticationProvider implements AuthenticationProvider {
 

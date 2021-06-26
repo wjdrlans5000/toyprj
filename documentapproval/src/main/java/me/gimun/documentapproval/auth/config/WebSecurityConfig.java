@@ -35,13 +35,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
+        //AuthenticationManager : Authentication을 만들고 인증을 처리하는 인터페이스
+        // AuthenticationManagerBuilder : 인증 객체를 만들 수 있도록 제공
         auth.jdbcAuthentication().dataSource(dataSource);
         auth
                 .userDetailsService(jwtUserDetailsService)
                 .passwordEncoder(passwordEncoder);
     }
 
+    //HttpSecurity 설정
+    //Security Filter 로 들어온 이후에 Role 등을 이용하여 인증 적용 여부를 결정한다.
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -51,12 +54,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 //- exceptionHandling을 위해서 실제 구현한 jwtAuthenticationEntryPoint을 넣어준다
                 .exceptionHandling()
+                //인증에 실패하여 401에러 발생시 jwtAuthenticationEntryPoint로 바인딩
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and()
                 //- Spring Security에서 Session을 생성하거나 사용하지 않도록 설정한다.
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
+        //커스텀 필터를 UsernamePasswordAuthenticationFilter 보다 앞에서 실행되도록 설정
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 

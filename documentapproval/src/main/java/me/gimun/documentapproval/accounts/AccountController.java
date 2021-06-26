@@ -13,6 +13,7 @@ public class AccountController {
     final AccountRepository accountRepository;
     final PasswordEncoder encode;
 
+    //[1].리퀘스트 바디로 사용자 이메일과 패스워드를 받아서 저장한다.
     @PostMapping("/api/account")
     public String saveMember(@RequestBody AccountDto accountDto) {
         Account account =  accountRepository.save(Account.createAccount(accountDto.getEmail(), encode.encode(accountDto.getPassword())));
