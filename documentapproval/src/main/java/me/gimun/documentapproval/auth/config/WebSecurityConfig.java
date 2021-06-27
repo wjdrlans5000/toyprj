@@ -49,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .authorizeRequests().antMatchers("/authenticate", "/api/account", "/docs/index.html").permitAll()
+                .authorizeRequests().antMatchers("/authenticate", "/api/account", "/docs/index.html","/h2-console/*").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 //- exceptionHandling을 위해서 실제 구현한 jwtAuthenticationEntryPoint을 넣어준다
