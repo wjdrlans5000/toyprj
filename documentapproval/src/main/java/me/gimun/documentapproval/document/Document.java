@@ -68,6 +68,8 @@ public class Document extends BaseEntity {
         this.docStatus = entity.getDocStatus();
         // list 객체로
         // approvals = proxy
+        // approvals 객체를 지연로딩으로 가져오므로 실제 객체를 가져오는게 아닌 프록시 객체를 가지고옴
+        // 따라서 get을 사용하여 실제 사용해야 프록시 객체를 사용하여 실제 엔티티를 상속받은 객체를 반환함
         this.approvals.clear();
         // approvals = proxy
         this.approvals.addAll(entity.getApprovals());
